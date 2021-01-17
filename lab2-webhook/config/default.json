@@ -1,0 +1,12 @@
+{
+    "AlgoFamily": {
+        "sha1": {
+            "hashAlgo": "sha1",
+            "sigHeaderName": "X-Hub-Signature"
+        },
+        "sha256": {
+            "hashAlgo": "sha256",
+            "sigHeaderName": "X-Hub-Signature-256"
+        }
+    }
+}

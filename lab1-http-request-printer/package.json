@@ -1,0 +1,12 @@
+{
+  "name": "http-request-printer",
+  "version": "1.0.0",
+  "description": "collect header and body info of a http request, and print info ",
+  "main": "index.js",
+  "scripts": {
+    "live": "nodemon index.js 0.0.0.0" ,
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "cchang62",
+  "license": "ISC"
+}
