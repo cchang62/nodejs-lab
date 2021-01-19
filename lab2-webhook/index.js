@@ -39,12 +39,13 @@ const { hashAlgo, sigHeaderName } = process.env.NODE_ENV == 'production' ? confi
 const webhookSecret = projectEnv['webhook_secret']
 const userAgent = projectEnv['user_agent']
 const repoName = projectEnv['repo_name']
+const appRoot = projectEnv['app_root']
 
 
 // Set up using body-parser to parse request body to a json object
 app.use(bodyParser.json())
 
-function verifyPostData(req, res, next) {
+function verifyRequest(req, res, next) {
     const payload = JSON.stringify(req.body)
     if (!payload) {
         return next('The request has empty body.')
@@ -54,8 +55,6 @@ function verifyPostData(req, res, next) {
         return next('The request is not allowed!!')
     }
     const reqRepo = req.body.repository.name
-    console.log(repoName)
-    console.log(req.body)
     if (!reqRepo.includes(repoName)) {
         return next('The repo is not matched!!')
     }
@@ -70,11 +69,60 @@ function verifyPostData(req, res, next) {
     return next()
 }
 
+function singleCmdExecutor(cmd, cb){
+    let child_process = require('child_process');
+    let parts = cmd.split(/\s+/g);
+    let p = child_process.spawn(parts[0], parts.slice(1), {stdio: 'inherit'});
+    p.on('exit', function(code){
+        let err = null;
+        if (code) {
+            err = new Error('command "'+ cmd +'" exited with wrong status code "'+ code +'"');
+            err.code = code;
+            err.cmd = cmd;
+        }
+        if (cb) {
+            cb(err);
+        }
+    });
+};
 
-app.post("/hook", verifyPostData, (req, res) => {
+function seriesCmdExecutor(cmds, cb) {
+    let execNext = () => {
+        singleCmdExecutor(cmds.shift(), function(err) {
+            if (err) {
+                cb(err);
+            } 
+            else {
+                if (cmds.length) {
+                    execNext();
+                } else {
+                    cb(null);
+                }
+            }
+        });
+    };
+    execNext();
+};
+
+
+app.post("/webhook", verifyRequest, (req, res) => {
     console.log(req.headers)
-    console.log(req.body) // Call your action on the request here
-    res.status(200).end() // Responding is important
+    console.log(req.body)
+    seriesCmdExecutor([
+        `cd ${appRoot}`,
+        'ls -alh .',
+        'cat ./jsconfig-1.json'
+    ], (err) => {   // callback function
+        if (err) {
+            console.log(`\nExecuting cmds are failed at ${err}`);
+            res.status(500).end()
+        }
+        else {
+            console.log(`\nexit 0`); 
+            res.status(200).end()
+        }
+    });
+    // res.status(200).end()
 })
 
 
