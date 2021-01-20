@@ -1,0 +1,8 @@
+README.md:standard input (STDIN) 代號 0：標準輸入，預設為鍵盤
+README.md:standard output (STDOUT) 代號 1：標準輸出，預設為終端機視窗
+README.md:standard error (STDERR) 代號 2：標準錯誤輸出，預設為終端機視窗
+github_webhook_request.txt:    updated_at: '2021-01-17T17:43:52Z',
+github_webhook_request.txt:    updated_at: '2021-01-14T16:22:46Z',
+index.js:    const digest = Buffer.from( hashAlgo + '=' + hmac.update(payload).digest('hex'), 'utf8')
+package-lock.json:      "integrity": "sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA==",
+package-lock.json:      "integrity": "sha512-yaOH/Pk/VEhBWWTlhI+qXxDFXlejDGcQipMlyxda9nthulaxLZUNcUqFxokp0vcYnvteJln5FNQDRrxj3YcbVw=="

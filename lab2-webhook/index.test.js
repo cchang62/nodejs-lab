@@ -34,7 +34,7 @@ function seriesCmdExecutor(cmds, cb) {
     };
     execNext();
 };
-
+/*
 seriesCmdExecutor([
     `cd /Users/Jibamy/Projects/nodejs-lab/lab2-webhook/config
     pwd
@@ -49,12 +49,24 @@ seriesCmdExecutor([
         console.log(`\nexit 0`); 
     }
 });
+*/
 
 let testCmd = `cd /Users/Jibamy/Projects/nodejs-lab/lab2-webhook/config
 pwd
 ls -alh .`;
 
 const cmdExecutor = require('child_process').exec;
+/**
 cmdExecutor(testCmd, function(err, stdout, stderr) {
     console.log(stdout);
 })
+
+*/
+const { execFile } = require('child_process');
+const child = execFile('bash', ['./cmd/print-node-version.sh'], (error, stdout, stderr) => {
+    if (error) {
+        console.error('stderr',  stderr);
+        throw error;
+    }
+    console.log(stdout);
+});

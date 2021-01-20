@@ -104,8 +104,8 @@ function seriesCmdExecutor(cmds, cb) {
     execNext();
 };
 
-
-app.post("/webhook", verifyRequest, (req, res) => {
+// webhook-ex used home-made shell heller that consist of child_process/spawn to execute commands
+app.post("/webhook-ex", verifyRequest, (req, res) => {
     console.log(req.headers)
     console.log(req.body)
     seriesCmdExecutor([
@@ -123,6 +123,11 @@ app.post("/webhook", verifyRequest, (req, res) => {
         }
     });
     // res.status(200).end()
+})
+
+app.get("/ping", (req, res) => {
+    // res.status(200).json({ result: 'pong' })
+    res.status(200).send('pong')
 })
 
 
