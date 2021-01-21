@@ -1,3 +1,34 @@
+if [ $(ps ax | grep [s]sh-agent | wc -l) -gt 0 ] ; then
+    echo "ssh-agent is already running"
+    pwd
+    whoami
+    eval $(ssh-agent -s)  
+    footprint=$(ssh-keygen -l -f /Users/Jibamy/.ssh/webhook_demo_rsa | awk '{print $2}')
+    # if  ssh-add -l | \
+    #     grep -q "$(ssh-keygen -l -f /Users/Jibamy/.ssh/webhook_demo_rsa | awk '{print $2}')"; \
+    #     then echo yes;
+    #     else echo no;
+    # fi
+    if [[ -z $(ssh-add -l | grep -q footprint) ]]; then
+        echo yes;
+    else
+        echo no;
+    fi
+    # trap "ssh-agent -k" exit
+else
+    eval $(ssh-agent -s)  
+    # export SSH_AGENT_PID_REPO=$(eval $(ssh-agent -s) | awk '{print $3}')
+    if [ "$(ssh-add -l)" == "The agent has no identities." ] ; then
+        ssh-add ~/.ssh/webhook_demo_rsa
+        git ls-remote
+    fi
+
+    # Don't leave extra agents around: kill it on exit. You may not want this part.
+    trap "ssh-agent -k" exit
+    # kill -9 $SSH_AGENT_PID_REPO
+    # kill -HUP "$SSH_AGENT_PID_REPO"
+fi
+
 # if [ps -p ${SSH_AGENT_PID} > /dev/null];
 #   then
 #   if [ps -p ${SSH_AGENT_PID}];

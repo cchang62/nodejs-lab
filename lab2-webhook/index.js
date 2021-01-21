@@ -40,6 +40,7 @@ const webhookSecret = projectEnv['webhook_secret']
 const userAgent = projectEnv['user_agent']
 const repoName = projectEnv['repo_name']
 const appRoot = projectEnv['app_root']
+const privateKey = projectEnv['private_key']
 
 
 // Set up using body-parser to parse request body to a json object
@@ -122,6 +123,25 @@ app.post("/webhook-ex", verifyRequest, (req, res) => {
             res.status(200).end()
         }
     });
+    // res.status(200).end()
+})
+
+app.post("/webhook", verifyRequest, (req, res) => {
+    console.log(req.headers)
+    console.log(req.body)
+    const { execFile } = require('child_process');
+    const child = execFile(
+        'bash', 
+        ['./cmd/app_cd.sh', privateKey, appRoot], 
+        (error, stdout, stderr) => {
+            if (error) {
+                console.error('stderr',  stderr);
+                throw error;
+            }
+            console.log(stdout);
+            res.status(200).json({ result: 'success' })
+        }
+    );
     // res.status(200).end()
 })
 
