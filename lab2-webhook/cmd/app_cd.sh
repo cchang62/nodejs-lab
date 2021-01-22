@@ -18,7 +18,7 @@ Help()
     echo
     echo "Usage: bash /path/to/app_cd.sh -p /path/to/private_key -a /path/to/app_root"
     echo
-    echo "Syntax: scriptTemplate [-h|p|a]"
+    echo "Syntax: cmd [-h|p <arg>|a <arg>]"
     echo "options:"
     echo "p     Set private key. p: private key."
     echo "a     Set app root path. a: app root."
