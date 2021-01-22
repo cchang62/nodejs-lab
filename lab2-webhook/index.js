@@ -132,7 +132,7 @@ app.post("/webhook", verifyRequest, (req, res) => {
     const { execFile } = require('child_process');
     const child = execFile(
         'bash', 
-        ['./cmd/app_cd.sh', privateKey, appRoot], 
+        ['./cmd/app_cd.sh', `-p ${privateKey}`, `-a ${appRoot}`], 
         (error, stdout, stderr) => {
             if (error) {
                 console.error('stderr',  stderr);

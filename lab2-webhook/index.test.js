@@ -63,7 +63,12 @@ cmdExecutor(testCmd, function(err, stdout, stderr) {
 
 */
 const { execFile } = require('child_process');
-const child = execFile('bash', ['./cmd/app_cd.sh', '/Users/Jibamy/.ssh/webhook_demo_rsa', '/Users/Jibamy/Projects/webhook-demo'], (error, stdout, stderr) => {
+const appRoot = '/Users/Jibamy/.ssh/webhook_demo_rsa'
+const privateKey = '/Users/Jibamy/Projects/webhook-demo'
+const child = execFile(
+    'bash', 
+    ['./cmd/app_cd.sh', `-p ${privateKey}`, `-a ${appRoot}`], 
+    (error, stdout, stderr) => {
     if (error) {
         console.error('stderr',  stderr);
         throw error;

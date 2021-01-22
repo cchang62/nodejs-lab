@@ -45,6 +45,8 @@ if [ -z $(ssh-add -l | grep -q "$(ssh-keygen -l -f $PRIVATE_KEY | awk '{print $2
     echo "--- register ssh key ---"
     cd $APP_ROOT
     ssh-add $PRIVATE_KEY
+    # echo $APP_ROOT
+    # echo $PRIVATE_KEY
     git ls-remote
     git pull
 fi
