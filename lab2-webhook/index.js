@@ -127,8 +127,8 @@ app.post("/webhook-ex", verifyRequest, (req, res) => {
 })
 
 app.post("/webhook", verifyRequest, (req, res) => {
-    console.log(req.headers)
-    console.log(req.body)
+    // console.log(req.headers)
+    // console.log(req.body)
     const { execFile } = require('child_process');
     const child = execFile(
         'bash', 

@@ -1,9 +1,8 @@
-# Ref.
-# https://stackoverflow.com/questions/192249/how-do-i-parse-command-line-arguments-in-bash
-# https://opensource.com/article/19/12/help-bash-program
-
 #!/bin/bash
 
+# Method-1
+# Usage demo-space-separated.sh -e conf -s /etc -l /usr/lib /etc/hosts
+# Ref. https://stackoverflow.com/questions/192249/how-do-i-parse-command-line-arguments-in-bash
 POSITIONAL=()
 while [[ $# -gt 0 ]]
 do
@@ -47,6 +46,10 @@ if [[ -n $1 ]]; then
     tail -1 "$1"
 fi
 
+# Method-2
+# Usage demo-space-separated.sh -e conf -s /etc -l /usr/lib /etc/hosts
+# Ref. https://opensource.com/article/19/12/help-bash-program
+
 Help()
 {
     # Display Help
@@ -61,6 +64,7 @@ Help()
     echo
 }
 
+# : stands for arguments
 while getopts ":h" option; do
     case $option in
         h) # display Help
