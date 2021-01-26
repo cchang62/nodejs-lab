@@ -51,4 +51,22 @@ if [ -z $(ssh-add -l | grep -q "$(ssh-keygen -l -f $PRIVATE_KEY | awk '{print $2
     git pull
 fi
 # stty -echo
-trap "ssh-agent -k" exit
+trap "ssh-agent -k" # exit
+
+AH_IS_ACT=`systemctl is-active your-service.service` 
+if [ "$AH_IS_ACT" == "active" ]; then
+    echo "your-service is active."
+    sudo systemctl restart your-service
+else
+    echo "your-service is not active."
+    sudo systemctl start your-service
+fi
+
+
+AH_IS_ACT=`systemctl is-active your-service.service` 
+if [ "$AH_IS_ACT" != "active" ]; then
+    echo "your-service fails to restart."
+    exit 1;
+fi
+
+exit

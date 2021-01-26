@@ -136,6 +136,8 @@ app.post("/webhook", verifyRequest, (req, res) => {
         (error, stdout, stderr) => {
             if (error) {
                 console.error('stderr',  stderr);
+                // sendEmail(); 
+                // TBD: create an email forwarder to keep restart-service-failure in posted.
                 throw error;
             }
             console.log(stdout);
