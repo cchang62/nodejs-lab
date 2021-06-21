@@ -1,0 +1,17 @@
+{
+  "name": "node-advance-http23-static-servers",
+  "version": "1.0.0",
+  "description": "Examples of serving static files with http2+ using node.js and GPG encryption",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "cchang62",
+  "license": "ISC",
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "koa": "^2.13.1",
+    "koa-body": "^4.2.0",
+    "koa-router": "^10.0.0"
+  }
+}
