@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>HTML Example</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- --><link defer rel="stylesheet" href="style.css"> 
   </head>
   <body>
     <h1>HTML Example</h1>
@@ -20,6 +20,8 @@
       <a href="tree.jpg">Tree JPG</a>,
       <a href="mountain_view.webp">Mountain_view WEBP</a>,
       <a href="mountain_view.jpg">Mountain_view JPG</a>,
+      <a href="big-image.jpeg">Big-Image JPEG</a>,
+      <a href="5m-sales-records.csv/download">download 5m-sales-records CSV</a>,
       <a href="script.js">JS</a>,
       <a href="style.css">CSS</a>,
       <a href="text.txt">TXT</a>,
@@ -28,9 +30,10 @@
     <p>
       JPEG:<br>
       <img class="photo" src="mountain_view.jpg">
+      <img lazy class="photo" src="big-image.jpeg">
     </p>
     <p class="style" style="opacity: 0">Styles are loading</p>
     <p class="script"></p>
-    <script src="script.js"></script>
+    <!--  --><script defer src="script.js"></script>
   </body>
 </html>

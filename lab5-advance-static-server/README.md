@@ -28,10 +28,11 @@ openssl rsa -in node-localhost-privkey.pem -out node-localhost-public.pem -pubou
 9. [Important - Http2 readStream example](https://nodejs.org/api/http2.html#http2_class_serverhttp2stream)
 10. [Very Important - HTTP2/3 Tutorial](https://youtu.be/Kqgv4Xs8yDI?t=903)
 11. [Node.js GCS client](https://googleapis.dev/nodejs/storage/latest/Bucket.html#getFilesStream)
-12. [Node.js GCS client - CreateReadStream](https://googleapis.dev/nodejs/storage/latest/File.html#createReadStream)
+12. [*** Node.js GCS client - CreateReadStream](https://googleapis.dev/nodejs/storage/latest/File.html#createReadStream)
 13. [Node ReadStream](https://ithelp.ithome.com.tw/articles/10221119)
 14. [Node.js Stream](https://nodesource.com/blog/understanding-streams-in-nodejs/)
 15. [PGP Encryption](https://blog.xuite.net/towns/hc/402767236)
 16. [Node PGP](https://www.npmjs.com/package/gpg)
 17. [OpenPGP.js](https://github.com/openpgpjs/openpgpjs)
+18. [Serve Image W/ Auth](https://alphahydrae.com/2021/02/how-to-display-an-image-protected-by-header-based-authentication/)
 
